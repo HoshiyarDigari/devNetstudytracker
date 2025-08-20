@@ -24,7 +24,13 @@ def form_handler():
         for h in user_headers_list:
             name, value = h.split(':',1)
             akamai_headers[name.strip()] = value.strip() # strip removes whitespaces from the strings
-    request_cookies= request.form.get('request_cookies')
+    request_cookies={}
+    user_cookies= request.form.get('request_cookies')
+    if user_cookies:
+        user_cookies_list = user_cookies.split()
+        for cookie in user_cookies_list:
+            name, value = cookie.split("=",1)
+            request_cookies[name.strip()]=value.strip()
     network = request.form.get('network')
 
     result= get_response_headers(domain, url, akamai_headers, request_cookies,network)
