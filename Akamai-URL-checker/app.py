@@ -27,7 +27,7 @@ def form_handler():
     request_cookies={}
     user_cookies= request.form.get('request_cookies')
     if user_cookies:
-        user_cookies_list = user_cookies.split()
+        user_cookies_list = user_cookies.split("\n")
         for cookie in user_cookies_list:
             name, value = cookie.split("=",1)
             request_cookies[name.strip()]=value.strip()
