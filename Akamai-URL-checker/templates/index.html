@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <title>Akamai Debugger</title>
+    <link rel="stylesheet" href="{{url_for('static', filename="styles.css")}}">
+</head>
+<body>
+    <h2>Akamai Debug Information</h2>
+    <div id="inputFormArea">
+        <form method="POST" action="/akamai-curl" id="inputForm">
+            <label for="hostname">Hostname</label><br>
+            <input type="text" id="hostname" name="hostname" required><br><br>
+            <label for="url"> URL</label><br>
+            <input type="text" id="url" name="url" required><br><br>
+            <p>Network</p>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" value="staging" name="network" id="network_staging">Staging
+                </label> 
+                <label>
+                    <input type="radio" value="production" name="network" id="network_production" >Production
+                </label>
+                
+            </div><br>
+            <label for="request_headers">Request Headers</label><br>
+            <input type="text" name="request_headers" placeholder="Space separated list of request headers in the format header_name:header_value" id="request_headers"><br><br>
+            <label for="request_cookies">Request Cookies</label><br>
+            <input type="text" name="request_cookies" placeholder="Space separated list of request cookies in the format cookie_name=cookie_value" id="request_cookies"><br><br>
+            
+        <input type="submit" id="formSubmit" name="formSubmit" ><br>
+            
+        </form>
+    </div>
+    <div id="outputArea">
+
+    </div>
+
+</body>
+    
+    
+</html>
