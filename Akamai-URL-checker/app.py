@@ -18,12 +18,16 @@ def form_handler():
     domain = request.form.get('hostname')
     url = request.form.get('url')
     akamai_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}
-    if not request.form.get('request_headers'):
-        request_headers=akamai_headers
+    user_headers = request.form.get('request_headers')
+    if user_headers:
+        user_headers_list = user_headers.split() #splits at each space in the user headers string from the form
+        for h in user_headers_list:
+            name, value = h.split(':',1)
+            akamai_headers[name.strip()] = value.strip() # strip removes whitespaces from the strings
     request_cookies= request.form.get('request_cookies')
     network = request.form.get('network')
 
-    result= get_response_headers(domain, url, request_headers, request_cookies,network)
+    result= get_response_headers(domain, url, akamai_headers, request_cookies,network)
     return result
 
 # this ensures that this code is running directly and not as a imported module
