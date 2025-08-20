@@ -17,8 +17,9 @@ def homepage():
 def form_handler():
     domain = request.form.get('hostname')
     url = request.form.get('url')
-    request_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}
-    request_headers= request.form.get('request_headers')
+    akamai_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}
+    if not request.form.get('request_headers'):
+        request_headers=akamai_headers
     request_cookies= request.form.get('request_cookies')
     network = request.form.get('network')
 
