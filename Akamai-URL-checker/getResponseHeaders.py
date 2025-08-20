@@ -1,5 +1,7 @@
 import requests
 from flask import jsonify
+import http.client
+http.client._MAXHEADERS = 200 # Akamai Debug returns more than 100 headers , this increases the value beyond the 100 limit by default
 
 def get_response_headers(domain, url, request_headers, request_cookies,network):
     """
