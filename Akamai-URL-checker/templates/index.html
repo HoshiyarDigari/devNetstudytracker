@@ -33,8 +33,25 @@
         </form>
     </div>
     <div id="outputArea">
-        <pre>{{output | tojson(indent=2)}}</pre>
-
+        {% if output !='' %}
+            {%  for category,headers in output.items() %}
+                <h3>{{category}}</h3>
+                <table border="1">
+                    <thead>
+                        <tr>Header Name</tr>
+                        <tr>Value</tr>
+                    </thead>
+                    <tbody>
+                        {% for name, value in headers.items() %}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{value}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        {% endif %}
     </div>
 
 </body>
