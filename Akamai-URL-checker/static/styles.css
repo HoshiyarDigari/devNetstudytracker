@@ -72,6 +72,7 @@ input[type="submit"].hover {
 #outputArea {
 
     max-width: 600px;
+    overflow-y: auto;
     margin: 20px auto;
     padding: 15px;
     background-color: #e9ecef;

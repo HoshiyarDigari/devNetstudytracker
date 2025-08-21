@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from getResponseHeaders import get_response_headers
-
+import json
 
 
 # The app is an instance of the Flask class
@@ -34,7 +34,8 @@ def form_handler():
     network = request.form.get('network')
 
     result= get_response_headers(domain, url, akamai_headers, request_cookies,network)
-    return result
+    output = json.loads(result.get_data(as_text=True))
+    return render_template('index.html', output=output)
 
 # this ensures that this code is running directly and not as a imported module
 if __name__ == "__main__":

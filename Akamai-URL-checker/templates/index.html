@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
+
+
 <head>
     <title>Akamai Debugger</title>
     <link rel="stylesheet" href="{{url_for('static', filename="styles.css")}}">
@@ -31,6 +33,7 @@
         </form>
     </div>
     <div id="outputArea">
+        <pre>{{output | tojson(indent=2)}}</pre>
 
     </div>
 
