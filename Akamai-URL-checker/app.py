@@ -16,7 +16,7 @@ def homepage():
 @app.route('/akamai-curl', methods=["POST"])
 def form_handler():
     domain = request.form.get('hostname')
-    url = request.form.get('url')
+    path = request.form.get('path')
     akamai_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}
     user_headers = request.form.get('request_headers')
     if user_headers:
@@ -33,7 +33,7 @@ def form_handler():
             request_cookies[name.strip()]=value.strip()
     network = request.form.get('network')
 
-    result= get_response_headers(domain, url, akamai_headers, request_cookies,network)
+    result= get_response_headers(domain, path, akamai_headers, request_cookies,network)
     output = json.loads(result.get_data(as_text=True))
     return render_template('index.html', output=output)
 

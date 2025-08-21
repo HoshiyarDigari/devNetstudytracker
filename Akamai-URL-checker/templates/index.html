@@ -11,8 +11,8 @@
         <form method="POST" action="/akamai-curl" id="inputForm">
             <label for="hostname">Hostname</label><br>
             <input type="text" id="hostname" name="hostname" required><br><br>
-            <label for="url"> URL</label><br>
-            <input type="text" id="url" name="url" required><br><br>
+            <label for="path"> Path</label><br>
+            <input type="text" id="path" name="path" pattern="^\/\S*" title="Enter a valid path starting with a /"  required><br><br>
             <p>Network</p>
             <div class="radio-group">
                 <label>
