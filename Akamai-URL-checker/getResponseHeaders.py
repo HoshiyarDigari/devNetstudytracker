@@ -26,11 +26,11 @@ def get_response_headers(domain, url, request_headers, request_cookies,network):
     akamai_debug_headers=[]
     other_headers=[]
     processing_errors=[]
-    status_code = str()
+    status_code = []
     try:
 
         response = requests.get(f"https://{domain}{url}", headers=request_headers, cookies=request_cookies,timeout=30)
-        status_code = response.status_code
+        status_code.append(f"status_code:{response.status_code}")
         for key, value in response.headers.items():
             if "cache" in key.lower():
                 caching_headers.append(f"{key}:{value}")
