@@ -20,17 +20,23 @@ def form_handler():
     akamai_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}
     user_headers = request.form.get('request_headers')
     if user_headers:
-        user_headers_list = user_headers.split() #splits at each space in the user headers string from the form
+        user_headers_list = user_headers.split("\n") #splits at each new line in the user headers string from the form
         for h in user_headers_list:
-            name, value = h.split(':',1)
-            akamai_headers[name.strip()] = value.strip() # strip removes whitespaces from the strings
+            try:
+                name, value = h.split(':',1)
+                akamai_headers[name.strip()] = value.strip() # strip removes whitespaces from the strings
+            except ValueError as e:
+                return render_template('errors.html', error=f"The request header line {h} is not valid format")
     request_cookies={}
     user_cookies= request.form.get('request_cookies')
     if user_cookies:
         user_cookies_list = user_cookies.split("\n")
         for cookie in user_cookies_list:
-            name, value = cookie.split("=",1)
-            request_cookies[name.strip()]=value.strip()
+            try:
+                name, value = cookie.split("=",1)
+                request_cookies[name.strip()]=value.strip()
+            except ValueError as e:
+                return render_template('errors.html', error=f"The request cookie {cookie} is not valid format")
     network = request.form.get('network')
 
     result= get_response(domain, path, akamai_headers, request_cookies,network)
