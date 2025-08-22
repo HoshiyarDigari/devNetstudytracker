@@ -3,12 +3,12 @@ from flask import jsonify
 import http.client
 http.client._MAXHEADERS = 200 # Akamai Debug returns more than 100 headers , this increases the value beyond the 100 limit by default
 
-def get_response_headers(domain, url, request_headers, request_cookies,network):
+def get_response(domain, path, request_headers, request_cookies,network):
     """
-        Gets the response headers for HTTP GET request to the domain and url, optionally can be passed additional headers and cookies
+        Gets the response headers for HTTP GET request to the domain and path, optionally can be passed additional headers and cookies
         Args:
             domain: the hostname for the web server
-            url: the URL along with query strings(if any)
+            path: the path along with query strings(if any)
             akamai_headers: list of request headers 
             request_cookies: list of request cookies
         Returns:
@@ -19,7 +19,7 @@ def get_response_headers(domain, url, request_headers, request_cookies,network):
                 - cookie headers: response headers that set cookie
                 - Akamai debug information: Akamai specific headers for troubleshooting
                 - other headers: rest of the response headers including Akamai debug headers
-                
+                - response body
     """
     caching_headers=[]
     cookie_headers=[]
@@ -27,10 +27,12 @@ def get_response_headers(domain, url, request_headers, request_cookies,network):
     other_headers=[]
     processing_errors=[]
     status_code = []
+    body =[]
     try:
 
-        response = requests.get(f"https://{domain}{url}", headers=request_headers, cookies=request_cookies,timeout=30)
+        response = requests.get(f"https://{domain}{path}", headers=request_headers, cookies=request_cookies,timeout=30)
         status_code.append(f"status_code:{response.status_code}")
+        body.append(f"Response: {response._content}")
         for key, value in response.headers.items():
             if "cache" in key.lower():
                 caching_headers.append(f"{key}:{value}")
@@ -46,5 +48,5 @@ def get_response_headers(domain, url, request_headers, request_cookies,network):
     except requests.exceptions.RequestException as err:
         processing_errors.append(f"Error:{err}")
 
-    response_headers = { "status_code":status_code,"caching_headers":caching_headers, "cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers, "other_headers":other_headers, "processing errors":processing_errors}
+    response_headers = { "status_code":status_code,"caching_headers":caching_headers, "cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers, "other_headers":other_headers, "Errors":processing_errors, "Text":body}
     return jsonify(response_headers)

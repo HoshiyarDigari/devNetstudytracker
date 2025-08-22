@@ -10,7 +10,7 @@
     <div id="inputFormArea">
         <form method="POST" action="/akamai-curl" id="inputForm">
             <label for="hostname">Hostname</label><br>
-            <input type="text" id="hostname" name="hostname" required><br><br>
+            <input type="text" id="hostname" name="hostname" pattern="\S*[.]\S*" title="Enter a valid hostname" required><br><br>
             <label for="path"> Path</label><br>
             <input type="text" id="path" name="path" pattern="^\/\S*" title="Enter a valid path starting with a /"  required><br><br>
             <p>Network</p>
@@ -50,8 +50,8 @@
                             {% if ":" in header %}
                                 {% set name, value = header.split(":",1) %}
                                     <tr>
-                                        <td>{{name.strip()}}</td>
-                                        <td>{{value.strip()}}</td>
+                                        <td >{{name.strip()}}</td>
+                                        <td id="{{name.strip()}}">{{value.strip()}}</td>
                                     </tr>
                             {% endif %}
                         {% endfor %}

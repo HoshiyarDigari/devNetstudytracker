@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from getResponseHeaders import get_response_headers
+from getResponse import get_response
 import json
 
 
@@ -33,7 +33,7 @@ def form_handler():
             request_cookies[name.strip()]=value.strip()
     network = request.form.get('network')
 
-    result= get_response_headers(domain, path, akamai_headers, request_cookies,network)
+    result= get_response(domain, path, akamai_headers, request_cookies,network)
     output = json.loads(result.get_data(as_text=True))
     return render_template('index.html', output=output)
 
