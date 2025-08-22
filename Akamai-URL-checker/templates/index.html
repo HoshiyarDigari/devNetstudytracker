@@ -1,16 +1,19 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
+
+
 <head>
     <title>Akamai Debugger</title>
     <link rel="stylesheet" href="{{url_for('static', filename="styles.css")}}">
+    <script src="{{url_for('static', filename="main.js")}}"></script>
 </head>
 <body>
     <h2>Akamai Debug Information</h2>
     <div id="inputFormArea">
         <form method="POST" action="/akamai-curl" id="inputForm">
             <label for="hostname">Hostname</label><br>
-            <input type="text" id="hostname" name="hostname" required><br><br>
-            <label for="url"> URL</label><br>
-            <input type="text" id="url" name="url" required><br><br>
+            <input type="text" id="hostname" name="hostname" pattern="\S*[.]\S*" title="Enter a valid hostname" required><br><br>
+            <label for="path"> Path</label><br>
+            <input type="text" id="path" name="path" pattern="^\/\S*" title="Enter a valid path starting with a /"  required><br><br>
             <p>Network</p>
             <div class="radio-group">
                 <label>
@@ -22,7 +25,7 @@
                 
             </div><br>
             <label for="request_headers">Request Headers</label><br>
-            <input type="text" name="request_headers" placeholder="Space separated list of request headers in the format header_name:header_value" id="request_headers"><br><br>
+            <textarea rows="5" cols="10" type="text" name="request_headers" placeholder="Enter Headers ( one per line , in name=value format)" id="request_headers"></textarea><br><br>
             <label for="request_cookies">Request Cookies</label><br>
             <textarea rows="10" cols="50" name="request_cookies" id="request_cookies" placeholder="Enter cookies (one per line, in name=value format)"></textarea><br><br>
             
@@ -31,7 +34,31 @@
         </form>
     </div>
     <div id="outputArea">
-
+        {% if output !='' %}
+            {%  for category,headers in output.items() %}
+                <h3>{{category.replace('_',' ').title() }}</h3>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>Header</td>
+                            <td>Value</td>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        {% for header in headers %}
+                            {% if ":" in header %}
+                                {% set name, value = header.split(":",1) %}
+                                    <tr>
+                                        <td >{{name.strip()}}</td>
+                                        <td id="{{name.strip()}}">{{value.strip()}}</td>
+                                    </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        {% endif %}
     </div>
 
 </body>
