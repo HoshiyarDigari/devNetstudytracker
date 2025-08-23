@@ -50,8 +50,17 @@
                             {% if ":" in header %}
                                 {% set name, value = header.split(":",1) %}
                                     <tr>
-                                        <td >{{name.strip()}}</td>
-                                        <td id="{{name.strip()}}">{{value.strip()}}</td>
+                                        {% if name.strip()=="Set-Cookie" %}
+                                            {% for c in value.split(", ") %}
+                                                <tr>
+                                                    <td>Set-Cookie</td>
+                                                    <td>{{c}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <td >{{name.strip()}}</td>
+                                            <td id="{{name.strip()}}">{{value.strip()}}</td>
+                                        {% endif %}
                                     </tr>
                             {% endif %}
                         {% endfor %}

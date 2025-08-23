@@ -47,5 +47,5 @@ def get_response(domain, path, request_headers, request_cookies,network):
     except Exception as e:
         processing_errors.append(f'Error:{str(e)}')
 
-    response_headers = { "status_code":status_code,"caching_headers":caching_headers, "cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers, "other_headers":other_headers, "Errors":processing_errors, "Text":body}
+    response_headers = { "status_code":status_code,"caching_headers":caching_headers, "general_headers":other_headers,"cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers,  "Errors":processing_errors, "Text":body}
     return render_template("index.html", output=response_headers)
