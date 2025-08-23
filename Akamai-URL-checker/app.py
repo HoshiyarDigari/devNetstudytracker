@@ -40,8 +40,8 @@ def form_handler():
     network = request.form.get('network')
 
     result= get_response(domain, path, akamai_headers, request_cookies,network)
-    output = json.loads(result.get_data(as_text=True))
-    return render_template('index.html', output=output)
+    #output = json.loads(result.get_data(as_text=True))
+    return result
 
 # this ensures that this code is running directly and not as a imported module
 if __name__ == "__main__":

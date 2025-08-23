@@ -1,5 +1,5 @@
 import requests
-from flask import jsonify
+from flask import render_template
 import http.client
 http.client._MAXHEADERS = 200 # Akamai Debug returns more than 100 headers , this increases the value beyond the 100 limit by default
 
@@ -12,14 +12,7 @@ def get_response(domain, path, request_headers, request_cookies,network):
             akamai_headers: list of request headers 
             request_cookies: list of request cookies
         Returns:
-            A JSON string containing response headers with following keys
-                - processing_errors : Details if there was an Error doing the GET request
-                - Status Code : HTTP response status code
-                - Caching headers: respopnse header about caching behaviour
-                - cookie headers: response headers that set cookie
-                - Akamai debug information: Akamai specific headers for troubleshooting
-                - other headers: rest of the response headers including Akamai debug headers
-                - response body
+            index.html with output area populated with data from response of the http request
     """
     caching_headers=[]
     cookie_headers=[]
@@ -49,4 +42,4 @@ def get_response(domain, path, request_headers, request_cookies,network):
         processing_errors.append(f"Error:{err}")
 
     response_headers = { "status_code":status_code,"caching_headers":caching_headers, "cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers, "other_headers":other_headers, "Errors":processing_errors, "Text":body}
-    return jsonify(response_headers)
+    return render_template("index.html", output=response_headers)

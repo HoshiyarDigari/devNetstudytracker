@@ -15,7 +15,7 @@ h2,h3 {
     background-color: #fff;
     padding:20px;
     margin:0 auto;
-    max-width: 600px;
+    max-width: 800px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
@@ -70,19 +70,15 @@ input[type="submit"].hover {
 }
 
 #outputArea {
-
-    
     max-height: 800px;
-    overflow-y: auto;
+    max-width: 800px;
+    overflow: auto;
     white-space: pre-wrap;
     margin: 20px auto;
     padding: 15px;
     background-color: #e9ecef;
     border-radius: 8px;
     border: 1px solid #ccc;
-
-
-    
 }
 
 table {
