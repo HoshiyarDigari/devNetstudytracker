@@ -21,9 +21,13 @@ def get_response(domain, path, request_headers, request_cookies,network):
     processing_errors=[]
     status_code = []
     body =[]
+    response=''
     try:
+        if network == "staging":
+            response = requests.get(f"https://{domain}{path}", headers=request_headers, cookies=request_cookies,timeout=30, verify=False)
+        else:
+            response = requests.get(f"https://{domain}{path}", headers=request_headers, cookies=request_cookies,timeout=30, verify=True)
 
-        response = requests.get(f"https://{domain}{path}", headers=request_headers, cookies=request_cookies,timeout=30)
         status_code.append(f"status_code:{response.status_code}")
         body.append(f"Response: {response._content}")
         for key, value in response.headers.items():
@@ -40,6 +44,8 @@ def get_response(domain, path, request_headers, request_cookies,network):
         processing_errors.append(f"Error:Server took too long to respond, Timed out")
     except requests.exceptions.RequestException as err:
         processing_errors.append(f"Error:{err}")
+    except Exception as e:
+        processing_errors.append(f'Error:{str(e)}')
 
     response_headers = { "status_code":status_code,"caching_headers":caching_headers, "cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers, "other_headers":other_headers, "Errors":processing_errors, "Text":body}
     return render_template("index.html", output=response_headers)
