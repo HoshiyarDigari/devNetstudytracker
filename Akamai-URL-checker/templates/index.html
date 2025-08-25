@@ -57,6 +57,13 @@
                                                     <td>{{c}}</td>
                                                 </tr>
                                             {% endfor %}
+                                        {% elif name.strip()=="X-Akamai-Session-Info" %}
+                                            {% for h in value.split(', ') %}
+                                                <tr>
+                                                    <td>X-Akamai-Session-Info</td>
+                                                    <td>{{ h.split('; ', 2) }}</td>
+                                                </tr>
+                                            {% endfor %}
                                         {% else %}
                                             <td >{{name.strip()}}</td>
                                             <td id="{{name.strip()}}">{{value.strip()}}</td>
