@@ -58,10 +58,11 @@
                                                 </tr>
                                             {% endfor %}
                                         {% elif name.strip()=="X-Akamai-Session-Info" %}
-                                            {% for h in value.split(', ') %}
+                                            <!-- <tr><td>{{value.strip()}}</td></tr> -->
+                                            {% for h in value.strip().split(', ') %}
                                                 <tr>
-                                                    <td>X-Akamai-Session-Info</td>
-                                                    <td>{{ h.split('; ', 2) }}</td>
+                                                    <td>{{h.split('; ')[0]}}</td>
+                                                    <td>{{ h.split('; ')[1] }}</td>
                                                 </tr>
                                             {% endfor %}
                                         {% else %}

@@ -24,9 +24,9 @@ def get_response(domain, path, request_headers, request_cookies,network):
     response=''
     try:
         if network == "staging":
-            response = requests.get(f"https://{domain}{path}", headers=request_headers, cookies=request_cookies,timeout=30, verify=False)
+            response = requests.get(f"https://{domain}{path}", headers=request_headers, cookies=request_cookies,timeout=30, verify=False, allow_redirects=False)
         else:
-            response = requests.get(f"https://{domain}{path}", headers=request_headers, cookies=request_cookies,timeout=30, verify=True)
+            response = requests.get(f"https://{domain}{path}", headers=request_headers, cookies=request_cookies,timeout=30, verify=True,allow_redirects=False)
 
         status_code.append(f"status_code:{response.status_code}")
         body.append(f"Response: {response._content}")
