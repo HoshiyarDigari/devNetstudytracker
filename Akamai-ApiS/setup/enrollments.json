@@ -1,0 +1,197 @@
+[
+    {
+        "cn": "*.rogersondemand.com",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 13178
+    },
+    {
+        "cn": "san.rogers.com",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 17561
+    },
+    {
+        "cn": "san.rogersanyplacetv.com",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 19299
+    },
+    {
+        "cn": "secure.theshoppingchannel.com",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 19562
+    },
+    {
+        "cn": "*.fido.ca",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 22778
+    },
+    {
+        "cn": "san.chatrmobile.com",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 23158
+    },
+    {
+        "cn": "san.rogersmedia.com",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 26957
+    },
+    {
+        "cn": "san.rogersmedia.ca",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 56973
+    },
+    {
+        "cn": "san2.rogersmedia.ca",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 56974
+    },
+    {
+        "cn": "2wayssl.rogers.com",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 68136
+    },
+    {
+        "cn": "san.rogersoneview.com",
+        "contractId": "4-OEQ4X",
+        "enrollmentId": 82536
+    },
+    {
+        "cn": "*.rogers-assets.com",
+        "contractId": "C-12MHU2U",
+        "enrollmentId": 47591
+    },
+    {
+        "cn": "san2.rogers.com",
+        "contractId": "C-12MHU2U",
+        "enrollmentId": 111226
+    },
+    {
+        "cn": "*.rogers.com",
+        "contractId": "C-12MHU2U",
+        "enrollmentId": 115505
+    },
+    {
+        "cn": "star959.ca",
+        "contractId": "C-12MHU2U",
+        "enrollmentId": 139578
+    },
+    {
+        "cn": "san-digital-2wayssl.rogers.com",
+        "contractId": "C-12MHU2U",
+        "enrollmentId": 147485
+    },
+    {
+        "cn": "san-digital-vip-2.rogers.com",
+        "contractId": "C-12MHU2U",
+        "enrollmentId": 207245
+    },
+    {
+        "cn": "*.rogers.com",
+        "contractId": "C-11SXLE8",
+        "enrollmentId": 119801
+    },
+    {
+        "cn": "*.fido.ca",
+        "contractId": "C-11SXLE8",
+        "enrollmentId": 121517
+    },
+    {
+        "cn": "san.shaw.ca",
+        "contractId": "M-23L0639",
+        "enrollmentId": 35075
+    },
+    {
+        "cn": "san2.rogersmedia.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 44274
+    },
+    {
+        "cn": "*.rogers.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 51259
+    },
+    {
+        "cn": "sandev.shaw.ca",
+        "contractId": "M-23L0639",
+        "enrollmentId": 55551
+    },
+    {
+        "cn": "san-2wayssl.rogers.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 123661
+    },
+    {
+        "cn": "san-digital-vip.rogers.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 123978
+    },
+    {
+        "cn": "citselmstwtls.rogers.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 139047
+    },
+    {
+        "cn": "san-digital.rogerstechspace.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 184603
+    },
+    {
+        "cn": "san-2wayssl-west.rogers.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 186743
+    },
+    {
+        "cn": "san-west.shaw.ca",
+        "contractId": "M-23L0639",
+        "enrollmentId": 191432
+    },
+    {
+        "cn": "entitlement.shaw.ca",
+        "contractId": "M-23L0639",
+        "enrollmentId": 196291
+    },
+    {
+        "cn": "san.rogersbank.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 201364
+    },
+    {
+        "cn": "san3.rogers.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 218551
+    },
+    {
+        "cn": "entitlement.shaw.ca",
+        "contractId": "M-23L0639",
+        "enrollmentId": 232112
+    },
+    {
+        "cn": "assets.tscimg.ca",
+        "contractId": "M-23L0639",
+        "enrollmentId": 237151
+    },
+    {
+        "cn": "san3.rogersmedia.ca",
+        "contractId": "M-23L0639",
+        "enrollmentId": 240660
+    },
+    {
+        "cn": "san-digital-vip-3.rogers.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 244516
+    },
+    {
+        "cn": "internal-npe.rogersbank.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 255597
+    },
+    {
+        "cn": "internal-npe2.rogersbank.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 255599
+    },
+    {
+        "cn": "internal-npe-digital.rogers.com",
+        "contractId": "M-23L0639",
+        "enrollmentId": 255600
+    }
+]

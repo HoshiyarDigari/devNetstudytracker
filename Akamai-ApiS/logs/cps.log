@@ -1,0 +1,31 @@
+2025-08-26 15:14:57,215 - root - INFO - Trying to get contract details from [default] section of ~/.edgerc file
+2025-08-26 15:15:00,050 - root - INFO - Processing Enrollments for contract: M-23L05TR
+2025-08-26 15:15:00,605 - root - INFO - Invalid API Response (400): Unable to get enrollments for contract
+2025-08-26 15:15:00,606 - root - INFO - Processing Enrollments for contract: 4-OEQ4X
+2025-08-26 15:15:01,373 - root - INFO - 11 total enrollments found.
+2025-08-26 15:15:01,373 - root - INFO - Processing Enrollments for contract: M-1ZJ065V
+2025-08-26 15:15:02,045 - root - INFO - 0 total enrollments found.
+2025-08-26 15:15:02,046 - root - INFO - Processing Enrollments for contract: C-12MHU2U
+2025-08-26 15:15:03,475 - root - INFO - 6 total enrollments found.
+2025-08-26 15:15:03,475 - root - INFO - Processing Enrollments for contract: C-11SXLE8
+2025-08-26 15:15:04,174 - root - INFO - 2 total enrollments found.
+2025-08-26 15:15:04,175 - root - INFO - Processing Enrollments for contract: C-XEPGIF
+2025-08-26 15:15:04,702 - root - INFO - Invalid API Response (400): Unable to get enrollments for contract
+2025-08-26 15:15:04,703 - root - INFO - Processing Enrollments for contract: W-QXQ7FO
+2025-08-26 15:15:05,142 - root - INFO - 0 total enrollments found.
+2025-08-26 15:15:05,142 - root - INFO - Processing Enrollments for contract: M-23L0639
+2025-08-26 15:15:05,852 - root - INFO - 20 total enrollments found.
+2025-08-26 15:15:05,852 - root - INFO - Processing Enrollments for contract: 3-6K32TU
+2025-08-26 15:15:06,545 - root - INFO - 0 total enrollments found.
+2025-08-26 15:15:06,547 - root - INFO - Enrollments details are stored in "setup/enrollments.json".
+2025-08-26 15:50:00,529 - root - ERROR - common Name (--cn) or enrollment-id (--enrollment-id) is mandatory.
+2025-08-26 15:51:19,621 - root - INFO - Getting details for enrollment-id: 207245
+2025-08-26 15:53:35,808 - root - ERROR - Common name (--cn) or enrollment-id (--enrollment-id) is mandatory.
+2025-08-26 16:07:20,979 - root - INFO - You are about to update enrollment-id: 207245 and CN: san-digital-vip-2.rogers.com
+2025-08-26 16:07:20,980 - root - INFO - Do you wish to continue? (Y/N)
+2025-08-26 16:10:12,122 - root - INFO - Exiting...
+2025-08-26 16:11:31,120 - root - INFO - Getting enrollment for san-digital-vip-2.rogers.com with enrollment-id: 207245
+2025-08-26 16:11:32,298 - root - INFO - The certificate is active, there are no current pending changes.
+2025-08-26 16:11:43,939 - root - INFO - You are about to update enrollment-id: 207245 and CN: san-digital-vip-2.rogers.com
+2025-08-26 16:11:43,940 - root - INFO - Do you wish to continue? (Y/N)
+2025-08-26 17:05:48,158 - root - INFO - Exiting...
