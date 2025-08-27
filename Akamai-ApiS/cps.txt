@@ -1,0 +1,122 @@
+1. install the cps CLI Module: 
+	akamai install cps
+2. Setup cps:
+	akamai cps setup
+		- created a setup folder that contains environments.json with certificate items like:
+			{ cn: "*.rogers.com", contractId: "C-12MHU2U", enrollmentId: 115505 }
+			{ cn: "san-digital-vip-2.rogers.com", contractId: "C-12MHU2U", enrollmentId: 207245 }
+
+3. Get details of the an enrollment:
+	akamai cps retrieve-enrollment --enrollment-id 207245
+		- outputs enrollment information json as below
+{
+    "id": 207245,
+    "productionSlots": [
+        3579
+    ],
+    "stagingSlots": [
+        3579
+    ],
+    "assignedSlots": [
+        3579
+    ],
+    "location": "/cps/v2/enrollments/207245",
+    "ra": "symantec",
+    "validationType": "ov",
+    "certificateType": "san",
+    "certificateChainType": "default",
+    "networkConfiguration": {
+        "geography": "core",
+        "secureNetwork": "enhanced-tls",
+        "mustHaveCiphers": "ak-akamai-2020q1",
+        "preferredCiphers": "ak-akamai-2020q1",
+        "disallowedTlsVersions": [
+            "TLSv1",
+            "TLSv1_1"
+        ],
+        "sniOnly": false,
+        "quicEnabled": false,
+        "dnsNameSettings": null,
+        "ocspStapling": "on",
+        "clientMutualAuthentication": null
+    },
+    "signatureAlgorithm": "SHA-256",
+    "changeManagement": true,
+    "csr": {
+        "cn": "san-digital-vip-2.rogers.com",
+        "c": "CA",
+        "st": "ON",
+        "l": "Toronto",
+        "o": "Rogers Communications Inc.",
+        "ou": null,
+        "sans": [
+            "connect.shawmobile.ca",
+            "my.shawmobile.ca",
+            "rogersxfinity.com",
+            "san-digital-vip-2.rogers.com",
+            "shop.shawmobile.ca",
+            "signin.shawmobile.ca",
+            "www.rogers.ca",
+            "www.rogersxfinity.com",
+            "www.shawmobile.ca"
+        ],
+        "preferredTrustChain": "default"
+    },
+    "org": {
+        "name": "Rogers Communications Inc.",
+        "addressLineOne": "333 Bloor St E, 10 Fl",
+        "addressLineTwo": null,
+        "city": "Toronto",
+        "region": "Ontario",
+        "postalCode": "M4W 1G9",
+        "country": "CA",
+        "phone": "+14169357777"
+    },
+    "orgId": 1378148,
+    "adminContact": {
+        "firstName": "Debra",
+        "lastName": "Charlery",
+        "phone": "4169357938",
+        "email": "domadmin@rci.rogers.com",
+        "addressLineOne": null,
+        "addressLineTwo": null,
+        "city": null,
+        "country": null,
+        "organizationName": null,
+        "postalCode": null,
+        "region": null,
+        "title": null
+    },
+    "techContact": {
+        "firstName": "Michael",
+        "lastName": "Sallee",
+        "phone": "6469436409",
+        "email": "msallee@akamai.com",
+        "addressLineOne": null,
+        "addressLineTwo": null,
+        "city": null,
+        "country": null,
+        "organizationName": null,
+        "postalCode": null,
+        "region": null,
+        "title": null
+    },
+    "thirdParty": null,
+    "enableMultiStackedCertificates": true,
+    "autoRenewalStartTime": "2025-10-11T23:59:59Z",
+    "pendingChanges": [],
+    "maxAllowedSanNames": 100,
+    "maxAllowedWildcardSanNames": 25
+}
+
+	- saved this json. and later this can be edited to add the new HOSTs we want to add to the certificate.
+
+4. Update the enrollment with new CN's added:
+	akamai cps update --enrollment-id 207245 --file 207245.json 
+		Running cps command... [========  ]
+		You are about to update enrollment-id: 207245 and CN: san-digital-vip-2.rogers.com
+
+		Do you wish to continue? (Y/N)
+		Running cps command... [======    ]
+
+
