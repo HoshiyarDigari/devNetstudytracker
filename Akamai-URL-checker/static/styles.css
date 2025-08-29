@@ -114,3 +114,12 @@ caption {
   font-weight: bold;
   margin-bottom: 10px;
 }
+
+button {
+    border-radius: 5px;
+    font-size:larger;
+    background-color: #d3dae2;
+}
+button:hover {
+    background-color: rgb(35, 143, 98);
+}
