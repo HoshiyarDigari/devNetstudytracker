@@ -4,7 +4,7 @@
 <head>
     <title>Akamai Debugger</title>
     <link rel="stylesheet" href="{{url_for('static', filename="styles.css")}}">
-    <script src="{{url_for('static', filename="main.js")}}"></script>
+    
 </head>
 <body>
     <h2>Akamai Debug Information</h2>
@@ -34,8 +34,8 @@
         </form>
     </div>
     <div id="outputArea">
-        <button id="rawHeaders">Raw Headers</button>
-        <div  id="rawHeadersOutput">
+        <button id="displayTypeButton">Raw Headers</button>
+        <div  id="rawHeaders" style="display: none;">
             {% if output !='' %}
                 {%  for category,headers in output.items() %}
                     <h3>{{category.replace('_',' ').title() }}</h3>
@@ -81,8 +81,31 @@
             {% endif %}
 
         </div>
+        <div id="parsedHeaders" style="display: block;">
+            <p id = "parsedMessage" > </p>
+            <table border="1" >
+                <thead>
+                    <tr>
+                        <td>Information</td>
+                        <td>Value</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Property Name</td>
+                        <td id="property_name"></td>
+                    </tr>
+                    <tr>
+                        <td>Property version</td>
+                        <td id="property_version"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         
     </div>
+    <!-- scripts -->
+    <script src="{{url_for('static', filename="main.js")}}"></script>
 
 </body>
     

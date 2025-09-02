@@ -1,6 +1,6 @@
-function toggleVisiblity (elementID) {
+function toggleVisibility (elementID) {
     const element = document.getElementById(elementID)
-    if (element.style.display=="none"){
+    if (element.style.display==="none"){
         element.style.display="block"
     }
     else {
@@ -8,5 +8,35 @@ function toggleVisiblity (elementID) {
     }
     
 } 
+// function to toggle between raw Headers output or the Parsed Headers output
+function toggleDisplay(elementID){
+    const element = document.getElementById(elementID);
+    if (element.textContent === "Raw Headers") {
+        element.textContent = "Parsed Information";
+        parseRawHeaders()
+        
+    }
+    else {
+        element.textContent = "Raw Headers"
+    }
+    toggleVisibility("rawHeaders");
+    toggleVisibility("parsedHeaders")
+}
+// onclick handler for the output type button
+document.getElementById("displayTypeButton").addEventListener("click", () => { toggleDisplay("displayTypeButton");});
 
-document.getElementById("rawButton").addEventListener(onclick, toggleVisiblity(rawButton))
+// function to extract values for displaying in parsed output.
+
+function parseRawHeaders(){
+    let propertyName = document.getElementById("name=AKA_PM_PROPERTY_NAME").textContent;
+    propertyName = propertyName.replace("value=",'');
+    let propertyVersion = document.getElementById("name=AKA_PM_PROPERTY_VERSION").textContent;
+    propertyVersion = propertyVersion.replace("value=",'');
+    let edgeIP = "1.2.3.4"
+    // const edgeIP = document.getElementById("X-Cache").textContent;
+    // const match = edgeIP.match(/from\s+([^-]+)-([^-]+)-([^-]+)-([^.]+)/);
+    // if (match) {
+    //     edgeIP = `${match[1]}.${match[2]}.${match[3]}.${match[4]}`; 
+    // }
+    document.getElementById('parsedMessage').textContent = `The request was processed by Akamai edge IP ${edgeIP} using rules from property ${propertyName}, version ${propertyVersion}`
+}
