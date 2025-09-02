@@ -36,6 +36,8 @@ def form_handler():
             return render_template("errors.html", errors=f"NO CNAME record found for {domain}")   
         except dns.resolver.NXDOMAIN:
             return render_template('errors.html', errors=f"NO DNS record for {domain}")
+        except Exception as e:
+            return render_template('errors.html', errors=f"Unexpected error")
 
     path = request.form.get('path')
     user_headers = request.form.get('request_headers')

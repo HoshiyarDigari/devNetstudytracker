@@ -38,14 +38,13 @@ def get_response(domain, path, request_headers, request_cookies,network):
             elif "x-akamai" in key.lower():
                 akamai_debug_headers.append(f"{key}:{value}")
             else:
-                other_headers.append(f"{key}:{value}")
-            
+                other_headers.append(f"{key}:{value}")        
     except requests.exceptions.Timeout:
-        processing_errors.append(f"Error:Server took too long to respond, Timed out")
+        return render_template("errors.html", errors=(f"Error:Server took too long to respond, Timed out"))
     except requests.exceptions.RequestException as err:
-        processing_errors.append(f"Error:{err}")
+        return render_template("errors.html", errors=(f"Error:{err}"))
     except Exception as e:
-        processing_errors.append(f'Error:{str(e)}')
+        return render_template("errors.html", errors=f"Error:{str(e)}")
 
-    response_headers = { "status_code":status_code,"caching_headers":caching_headers, "general_headers":other_headers,"cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers,  "Errors":processing_errors, "Text":body}
+    response_headers = { "status_code":status_code,"caching_headers":caching_headers, "general_headers":other_headers,"cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers, "Text":body}
     return render_template("index.html", output=response_headers)
