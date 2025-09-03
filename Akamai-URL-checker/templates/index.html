@@ -33,13 +33,17 @@
             
         </form>
     </div>
+    <div id="summary" style="display: block;">
+            <p id = "parsedMessage" > </p>
+    </div>
     <div id="outputArea">
-        <button id="displayTypeButton">Raw Headers</button>
-        <div  id="rawHeaders" style="display: none;">
+        <div  id="rawHeaders" >
+            <!-- We iterate through the output variable to populate different sections -->
             {% if output !='' %}
                 {%  for category,headers in output.items() %}
-                    <h3>{{category.replace('_',' ').title() }}</h3>
-                    <table border="1" >
+                    <!-- the replace function make general_headers look nicer with first words capitalized and _ replaced by space -->
+                    <h3>{{category.replace('_',' ').title() }}</h3> 
+                    <table border="1" id="rawHeadersTable" >
                         <thead>
                             <tr>
                                 <td>Header</td>
@@ -60,7 +64,7 @@
                                                     </tr>
                                                 {% endfor %}
                                             {% elif name.strip()=="X-Akamai-Session-Info" %}
-                                                <!-- <tr><td>{{value.strip()}}</td></tr> -->
+                                                
                                                 {% for h in value.strip().split(', ') %}
                                                     <tr>
                                                         {% set header_name=h.split('; ')[0] %}
@@ -81,27 +85,7 @@
             {% endif %}
 
         </div>
-        <div id="parsedHeaders" style="display: block;">
-            <p id = "parsedMessage" > </p>
-            <table border="1" >
-                <thead>
-                    <tr>
-                        <td>Information</td>
-                        <td>Value</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Property Name</td>
-                        <td id="property_name"></td>
-                    </tr>
-                    <tr>
-                        <td>Property version</td>
-                        <td id="property_version"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        
         
     </div>
     <!-- scripts -->

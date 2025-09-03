@@ -8,24 +8,6 @@ function toggleVisibility (elementID) {
     }
     
 } 
-// function to toggle between raw Headers output or the Parsed Headers output
-function toggleDisplay(elementID){
-    const element = document.getElementById(elementID);
-    if (element.textContent === "Raw Headers") {
-        element.textContent = "Parsed Information";
-        parseRawHeaders()
-        
-    }
-    else {
-        element.textContent = "Raw Headers"
-    }
-    toggleVisibility("rawHeaders");
-    toggleVisibility("parsedHeaders")
-}
-// onclick handler for the output type button
-document.getElementById("displayTypeButton").addEventListener("click", () => { toggleDisplay("displayTypeButton");});
-
-// function to extract values for displaying in parsed output.
 
 function parseRawHeaders(){
     let propertyName = document.getElementById("name=AKA_PM_PROPERTY_NAME").textContent;
@@ -44,3 +26,11 @@ function parseRawHeaders(){
     message+= cache_hit? "The response was served from cache": "The response was fetched from origin";
     document.getElementById('parsedMessage').textContent = message;
 }
+
+window.addEventListener("DOMContentLoaded", ()=> {
+    const currentPath=window.location.pathname;
+    if (currentPath==="/akamai-curl"){
+        parseRawHeaders();
+        toggleVisibility("inputFormArea");
+    }
+});
