@@ -32,11 +32,15 @@ function parseRawHeaders(){
     propertyName = propertyName.replace("value=",'');
     let propertyVersion = document.getElementById("name=AKA_PM_PROPERTY_VERSION").textContent;
     propertyVersion = propertyVersion.replace("value=",'');
-    let edgeIP = "1.2.3.4"
-    // const edgeIP = document.getElementById("X-Cache").textContent;
-    // const match = edgeIP.match(/from\s+([^-]+)-([^-]+)-([^-]+)-([^.]+)/);
-    // if (match) {
-    //     edgeIP = `${match[1]}.${match[2]}.${match[3]}.${match[4]}`; 
-    // }
-    document.getElementById('parsedMessage').textContent = `The request was processed by Akamai edge IP ${edgeIP} using rules from property ${propertyName}, version ${propertyVersion}`
+    let edgeIP = document.getElementById("X-Cache").textContent;
+    const match = edgeIP.match(/from\s+([^-]+)-([^-]+)-([^-]+)-([^.]+)/);
+    if (match) {
+        edgeIP = `${match[1]}.${match[2]}.${match[3]}.${match[4]}`; 
+    }
+    let message = `The request was processed by Akamai edge IP ${edgeIP} using rules from property ${propertyName}, version ${propertyVersion}.\n`;
+    let cache_hit = document.getElementById("X-Cache").textContent.trim();
+    // cache hit will be true if "HIT" is found in the string else it will be false
+    cache_hit = cache_hit.toLowerCase().includes("hit");
+    message+= cache_hit? "The response was served from cache": "The response was fetched from origin";
+    document.getElementById('parsedMessage').textContent = message;
 }

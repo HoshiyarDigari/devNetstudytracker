@@ -5,11 +5,12 @@ body {
     padding: 20px;
 
 }
-h2,h3,p {
+h2,h3{
     columns: #333;
     text-align: center;
 
 }
+
 
 #inputFormArea {
     background-color: #fff;
@@ -65,7 +66,7 @@ input[type="submit"]{
 
 }
 input[type="submit"].hover {
-    background-color: #d3dae2;
+    background-color: #d3dfe2;
 
 }
 
@@ -122,4 +123,17 @@ button {
 }
 button:hover {
     background-color: rgb(35, 143, 98);
+}
+
+
+p, label {
+  background-color: #fef3c7; /* soft yellow background */
+  color: #1f2937;            /* dark text for contrast */
+  font-size: 1.2em;          /* slightly larger text */
+  font-weight: bold;         /* bold text */
+  padding: 15px;             /* space inside the box */
+  border-left: 5px solid #f59e0b; /* orange accent border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  border-radius: 8px;        /* rounded corners */
+  margin: 20px 0;            /* spacing around the paragraph */
 }
