@@ -3,7 +3,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: auto;
   padding: 20px;
-  background-color: #f4f6f8;
+  background-color: #fff;
   color: #333;
 }
 
@@ -12,4 +12,15 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
+
+h3, p, table {
+    background-color: aqua;
+    color:rgb(10, 15, 0);
+}
+
+h3 {
+    text-align: center;
+}
+
