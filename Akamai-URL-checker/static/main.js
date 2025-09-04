@@ -21,7 +21,7 @@ function parseRawHeaders(){
         status = "Redirect" ;
         redirectUrl = document.getElementById("Location").textContent.trim();
     }
-    let message = `The request was ${status} with ${statusCode}<br>`;
+    let message = `The request was ${status} with HTTP status code ${statusCode}.<br>`;
     if (status === "Redirect") {
         message+=`The redirect location is ${redirectUrl}<br>`
     };
@@ -33,17 +33,17 @@ function parseRawHeaders(){
     if (ipParts) {
         edgeIP = `${ipParts[1]}.${ipParts[2]}.${ipParts[3]}.${ipParts[4]}`; 
     }
-    message += `The request was processed by Akamai edge IP ${edgeIP} using rules from property ${propertyName}, version ${propertyVersion}.<br><br>`;
+    message += `The request was processed by Akamai edge IP ${edgeIP} using rules from property ${propertyName}, version ${propertyVersion}.<br>`;
     let cache_hit = document.getElementById("X-Cache").textContent.trim();
     // cache hit will be true if "HIT" is found in the string else it will be false
     cache_hit = cache_hit.toLowerCase().includes("hit");
-    message+= cache_hit? "The response was served from cache.<br><br>": "The response was fetched from origin.<br><br>";
+    message+= cache_hit? "The response was served from cache.<br><br>": "The response was fetched from origin.<br>";
     // check if there is a server header
     const origin = document.getElementById("Server")
     if (origin) {
-        message+=`The origin server is ${origin.textContent.trim()}<br>`
+        message+=`The origin server is ${origin.textContent.trim()}.<br>`
     }
-    document.getElementById('parsedMessage').innerHTML = message;
+    document.getElementById('summary').innerHTML = `<h3>Summary</h3><p>${message}</p>`;
 }
 
 window.addEventListener("DOMContentLoaded", ()=> {

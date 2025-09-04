@@ -53,7 +53,7 @@
     
     <div id="outputArea">
         <div id="summary" style="display: block;">
-            <p id = "parsedMessage" > </p>
+            
         </div>
         <div  id="rawHeaders" >
             <!-- We iterate through the output variable to populate different sections -->
@@ -61,7 +61,7 @@
                 {%  for category,headers in output.items() %}
                     <!-- the replace function make general_headers look nicer with first words capitalized and _ replaced by space -->
                     <h3>{{category.replace('_',' ').title() }}</h3> 
-                    <table border="1" >
+                    <table class="headerTable">
                         <thead>
                             <tr>
                                 <td>Header</td>
