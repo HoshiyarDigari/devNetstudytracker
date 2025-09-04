@@ -1,14 +1,31 @@
 <!DOCTYPE html >
+<html lang="en">
 
 
 <head>
+    <!-- meta tags  -->
+     <!-- define the character set to display special characters correctly -->
+     <meta charset="UTF-8">
     <title>Akamai Debugger</title>
+    <!-- viewport is for responsive design for various screen sizes and devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- define author and purpose of the page -->
+     <meta name="description" content="This is a flask web app that provides tools for the Digital Akamai Support Team">
+     <meta name="author" content="Hoshiyar Singh Digari">
+
+     <!-- disable SEO for this page -->
+      <meta name="robots" content="noindex,nofollow">
+    
+
+    <!-- stylesheets -->
     <link rel="stylesheet" href="{{url_for('static', filename="styles.css")}}">
+    <link rel="stylesheet" href="{{url_for('static', filename="learn-styles.css")}}">
+
     
 </head>
 <body>
-    <h2>Akamai Debug Information</h2>
     <div id="inputFormArea">
+        <h2>Check URL </h2>
         <form method="POST" action="/akamai-curl" id="inputForm">
             <label for="hostname">Hostname</label><br>
             <input type="text" id="hostname" name="hostname" pattern="\S*[.]\S*" title="Enter a valid hostname" required><br><br>
@@ -33,10 +50,11 @@
             
         </form>
     </div>
-    <div id="summary" style="display: block;">
-            <p id = "parsedMessage" > </p>
-    </div>
+    
     <div id="outputArea">
+        <div id="summary" style="display: block;">
+            <p id = "parsedMessage" > </p>
+        </div>
         <div  id="rawHeaders" >
             <!-- We iterate through the output variable to populate different sections -->
             {% if output !='' %}
