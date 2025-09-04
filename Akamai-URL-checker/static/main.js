@@ -25,20 +25,24 @@ function parseRawHeaders(){
     if (status === "Redirect") {
         message+=`The redirect location is ${redirectUrl}<br>`
     };
-    let propertyName = document.getElementById("name=AKA_PM_PROPERTY_NAME").textContent;
-    propertyName = propertyName.replace("value=",'');
-    let propertyVersion = document.getElementById("name=AKA_PM_PROPERTY_VERSION").textContent;
-    propertyVersion = propertyVersion.replace("value=",'');
+    const propertyName = document.getElementById("name=AKA_PM_PROPERTY_NAME").textContent.replace("value=", '');
+    
+    const propertyVersion = document.getElementById("name=AKA_PM_PROPERTY_VERSION").textContent.replace("value=",'');
     let edgeIP = document.getElementById("X-Cache").textContent;
-    const match = edgeIP.match(/from\s+([^-]+)-([^-]+)-([^-]+)-([^.]+)/);
-    if (match) {
-        edgeIP = `${match[1]}.${match[2]}.${match[3]}.${match[4]}`; 
+    const ipParts = edgeIP.match(/from\s+([^-]+)-([^-]+)-([^-]+)-([^.]+)/);
+    if (ipParts) {
+        edgeIP = `${ipParts[1]}.${ipParts[2]}.${ipParts[3]}.${ipParts[4]}`; 
     }
     message += `The request was processed by Akamai edge IP ${edgeIP} using rules from property ${propertyName}, version ${propertyVersion}.<br><br>`;
     let cache_hit = document.getElementById("X-Cache").textContent.trim();
     // cache hit will be true if "HIT" is found in the string else it will be false
     cache_hit = cache_hit.toLowerCase().includes("hit");
-    message+= cache_hit? "The response was served from cache.<br>": "The response was fetched from origin.<br>";
+    message+= cache_hit? "The response was served from cache.<br><br>": "The response was fetched from origin.<br><br>";
+    // check if there is a server header
+    const origin = document.getElementById("Server")
+    if (origin) {
+        message+=`The origin server is ${origin.textContent.trim()}<br>`
+    }
     document.getElementById('parsedMessage').innerHTML = message;
 }
 

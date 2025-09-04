@@ -1,0 +1,15 @@
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: auto;
+  padding: 20px;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+
+#outputArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
