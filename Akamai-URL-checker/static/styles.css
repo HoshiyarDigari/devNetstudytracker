@@ -5,17 +5,18 @@ body {
     padding: 20px;
 
 }
-h2,h3 {
+h2,h3{
     columns: #333;
     text-align: center;
 
 }
 
+
 #inputFormArea {
     background-color: #fff;
     padding:20px;
     margin:0 auto;
-    max-width: 600px;
+    max-width: 800px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
@@ -65,24 +66,20 @@ input[type="submit"]{
 
 }
 input[type="submit"].hover {
-    background-color: #d3dae2;
+    background-color: #d3dfe2;
 
 }
 
 #outputArea {
-
-    
     max-height: 800px;
-    overflow-y: auto;
+    max-width: 800px;
+    overflow: auto;
     white-space: pre-wrap;
     margin: 20px auto;
     padding: 15px;
     background-color: #e9ecef;
     border-radius: 8px;
     border: 1px solid #ccc;
-
-
-    
 }
 
 table {
@@ -117,4 +114,26 @@ caption {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
+}
+
+button {
+    border-radius: 5px;
+    font-size:larger;
+    background-color: #d3dae2;
+}
+button:hover {
+    background-color: rgb(35, 143, 98);
+}
+
+
+p, label {
+  background-color: #fef3c7; /* soft yellow background */
+  color: #1f2937;            /* dark text for contrast */
+  font-size: 1.2em;          /* slightly larger text */
+  font-weight: bold;         /* bold text */
+  padding: 15px;             /* space inside the box */
+  border-left: 5px solid #f59e0b; /* orange accent border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  border-radius: 8px;        /* rounded corners */
+  margin: 20px 0;            /* spacing around the paragraph */
 }
