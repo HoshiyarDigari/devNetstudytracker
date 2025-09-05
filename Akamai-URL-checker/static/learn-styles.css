@@ -3,24 +3,56 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: aquamarine;
   color: #333;
 }
 
-
-#outputArea {
+.formFields {
+  display: grid;
+  justify-content: left;
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: #dce0e3;
+}
+.outputArea{
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
+
 }
 
-h3, p, table {
-    background-color: aqua;
-    color:rgb(10, 15, 0);
+.headerTable {
+
+    border-collapse: collapse;
+    width: 80vw;
+   
+}
+
+
+.headerTable th, .headerTable td {
+    border: 1px, solid, #333;
+    border-collapse: collapse;
+    padding: 5px;
 }
 
 h3 {
-    text-align: center;
+    text-align: left;
 }
 
+.button-label {
+    display: inline-block;
+    background-color: #0078d9;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    color: white;
+    margin: 10px;
+}
+#submitButton {
+  background-color: #0078d9;
+  padding: 10px 20px;
+}
+.button-label:hover, #submitButton:hover {
+  background-color: #529e00;
+}
