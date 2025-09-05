@@ -1,3 +1,4 @@
+const CURRENT_PAGE = window.location.pathname;
 function toggleVisibility (elementID) {
     const element = document.getElementById(elementID)
     if (element.style.display==="none"){
@@ -46,10 +47,31 @@ function parseRawHeaders(){
     document.getElementById('summary').innerHTML = `<h3>Summary</h3><p>${message}</p>`;
 }
 
+// Functions for the akamai-curl page
 window.addEventListener("DOMContentLoaded", ()=> {
-    const currentPath=window.location.pathname;
-    if (currentPath==="/akamai-curl"){
+    
+    if (CURRENT_PAGE==="/akamai-curl"){
         parseRawHeaders();
         toggleVisibility("inputFormArea");
     }
 });
+
+// Functions for the root page
+
+window.addEventListener("DOMContentLoaded", ()=>{
+    if (CURRENT_PAGE === "/") {
+        toggleOptionalFormFields();
+    }
+})
+
+// Enable Optional Form fields if the buttons for them are clicked
+
+function toggleOptionalFormFields(){
+    const optionalLabels = document.querySelectorAll(".optionalFormFields .button-label")
+    for (let i = 0 ; i < optionalLabels.length; i++){
+        optionalLabels[i].addEventListener("click", (event)=> {
+            toggleVisibility(event.target.getAttribute('for'));
+        })
+
+    }
+}

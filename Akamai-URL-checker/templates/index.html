@@ -25,33 +25,39 @@
 </head>
 <body>
     <div id="inputFormArea">
-        <h2>Check URL </h2>
+        <h3>Akamai URL Checker </h3>
         <form method="POST" action="/akamai-curl" id="inputForm">
-            <label for="hostname">Hostname</label><br>
-            <input type="text" id="hostname" name="hostname" pattern="\S*[.]\S*" title="Enter a valid hostname" required><br><br>
-            <label for="path"> Path</label><br>
-            <input type="text" id="path" name="path" pattern="^\/\S*" title="Enter a valid path starting with a /"  required><br><br>
-            <p>Network</p>
-            <div class="radio-group">
-                <label>
-                    <input type="radio" value="staging" name="network" id="network_staging">Staging
-                </label> 
-                <label>
-                    <input type="radio" value="production" name="network" id="network_production" >Production
-                </label>
-                
-            </div><br>
-            <label for="request_headers">Request Headers</label><br>
-            <textarea rows="5" cols="10" type="text" name="request_headers" placeholder="Enter Headers ( one per line , in name:value format)" id="request_headers"></textarea><br><br>
-            <label for="request_cookies">Request Cookies</label><br>
-            <textarea rows="10" cols="50" name="request_cookies" id="request_cookies" placeholder="Enter cookies (one per line, in name=value format)"></textarea><br><br>
+            <div class="formFields" >
+                <label for="hostname">Hostname</label>
+                <input type="text" id="hostname" name="hostname" pattern="\S*[.]\S*" title="Enter a valid hostname" required>
+                <label for="path"> Path</label>
+                <input type="text" id="path" name="path" pattern="^\/\S*" title="Enter a valid path starting with a /"  required>
+                <p>Network</p>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" value="staging" name="network" id="network_staging">Staging
+                    </label> 
+                    <label>
+                        <input type="radio" value="production" name="network" id="network_production" checked >Production
+                    </label>
+                    
+                </div>
+                <div class="optionalFormFields">
+                    <label for="request_headers" class="button-label">Request Headers</label>
+                    <textarea rows="5" cols="50" type="text" name="request_headers" placeholder="Enter Headers ( one per line , in name:value format)" id="request_headers" style="display: none;"></textarea>
+                    <label for="request_cookies" class="button-label">Request Cookies</label>
+                    <textarea rows="5" cols="50" name="request_cookies" id="request_cookies" placeholder="Enter cookies (one per line, in name=value format)" style="display: none;"></textarea>
+                </div>
+                <input type="submit" id="submitButton" name="formSubmit" class="button-label">
+            </div>
             
-        <input type="submit" id="formSubmit" name="formSubmit" ><br>
+            
+        
             
         </form>
     </div>
     
-    <div id="outputArea">
+    <div classs="outputArea">
         <div id="summary" style="display: block;">
             
         </div>
