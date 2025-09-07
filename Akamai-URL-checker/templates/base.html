@@ -1,0 +1,38 @@
+
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <!-- meta tags  -->
+     <!-- define the character set to display special characters correctly -->
+     <meta charset="UTF-8">
+    <title>{% block title %} Digital Akamai Tools {% endblock %} </title>
+    <!-- viewport is for responsive design for various screen sizes and devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- define author and purpose of the page -->
+    <meta name="description" content="This is a flask web app that provides tools for the Digital Akamai Support Team">
+    <meta name="author" content="Hoshiyar Singh Digari">
+
+    <!-- disable SEO for this page -->
+    <meta name="robots" content="noindex,nofollow">
+    
+
+    <!-- stylesheets -->
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{url_for('static', filename="learn-styles.css")}}">
+    {% endblock %}
+    
+</head>
+<body>
+    {% block content %}
+    <div class="menu">
+        <p>This is where the menu will be </p>
+    </div>
+    <!-- scripts -->
+    {% block scripts %}
+    <script src="{{url_for('static', filename="main.js")}}"></script>
+    {% endblock %}
+    {% endblock %}
+</body>
+    
+    
+</html>

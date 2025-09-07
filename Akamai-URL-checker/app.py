@@ -14,10 +14,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return render_template('index.html', output='')
+    return render_template('base.html')
 
-@app.route('/akamai-curl', methods=["POST"])
+@app.route('/akamai-curl', methods=["POST", "GET"])
 def form_handler():
+    if request.method == "GET":
+        return render_template("requestDebugger.html", output='')
     akamai_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}
     domain = request.form.get('hostname')
     # if staging is selected, we need to find the staging CNAME
