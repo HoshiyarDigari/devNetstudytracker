@@ -44,7 +44,7 @@ def get_response(domain, path, request_headers, request_cookies,network):
     except requests.exceptions.RequestException as err:
         return render_template("errors.html", errors=(f"Error:{err}"))
     except RequestException as e:
-        return render_template("errors.html", errors=f"Error:there was an error")
+        return render_template("errors.html", errors=f"Error:there was an error{e}")
 
     response_headers = { "status_code":status_code,"caching_headers":caching_headers, "general_headers":other_headers,"cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers, "Text":body}
-    return render_template("index.html", output=response_headers)
+    return render_template("requestDebugger.html", output=response_headers)
