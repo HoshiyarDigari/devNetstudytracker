@@ -65,7 +65,7 @@ Akamai Request Debugger
                                                 {% for c in value.split(", ") %}
                                                     <tr>
                                                         <td>Set-Cookie</td>
-                                                        <td>{{c}}</td>
+                                                        <td id="{{c}}">{{c}}</td>
                                                     </tr>
                                                 {% endfor %}
                                             {% elif name.strip()=="X-Akamai-Session-Info" %}
