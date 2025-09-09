@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return render_template('base.html')
+    return render_template('home.html')
 
 @app.route('/akamai-curl', methods=["POST", "GET"])
 def form_handler():

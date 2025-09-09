@@ -24,13 +24,12 @@
 </head>
 <body>
     {% block content %}
-    <div class="menu">
-        <p>This is where the menu will be </p>
-    </div>
+    
+    {% endblock %}
+
     <!-- scripts -->
     {% block scripts %}
     <script src="{{url_for('static', filename="main.js")}}"></script>
-    {% endblock %}
     {% endblock %}
 </body>
     
