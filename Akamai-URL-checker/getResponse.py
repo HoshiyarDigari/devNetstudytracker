@@ -48,4 +48,4 @@ def get_response(domain, path, request_headers, request_cookies,network):
 
     response_headers = { "status_code":status_code,"caching_headers":caching_headers, "general_headers":other_headers,"cookie_headers":cookie_headers, "akamai_debug_headers":akamai_debug_headers, "Text":body}
     print(cookie_headers)
-    return render_template("requestDebugger.html", output=response_headers)
+    return render_template("1.html", output=response_headers)

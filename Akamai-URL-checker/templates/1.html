@@ -1,12 +1,6 @@
-{% extends "home.html" %}
-<!-- {% block title %}
-Akamai Request Debugger
-{% endblock %} -->
 
-{% block tool %}
-<body>
     <div id="inputFormArea">
-        <h3>Debug URL </h3>
+        <h3>Debug URL</h3>
         <form method="POST" action="/debug-url" id="inputForm">
             <div class="formFields" >
                 <label for="hostname">Hostname</label>
@@ -25,11 +19,11 @@ Akamai Request Debugger
                 </div>
                 <div class="optionalFormFields">
                     <label for="request_headers" class="button-label">Request Headers</label>
-                    <textarea rows="5" cols="50" type="text" name="request_headers" placeholder="Enter Headers ( one per line , in name:value format)" id="request_headers" style="display: none;"></textarea>
+                    <textarea rows="5" cols="50" type="text" name="request_headers" placeholder="Enter Headers ( one per line , in name:value format)" id="request_headers" ></textarea>
                     <label for="request_cookies" class="button-label">Request Cookies</label>
-                    <textarea rows="5" cols="50" name="request_cookies" id="request_cookies" placeholder="Enter cookies (one per line, in name=value format)" style="display: none;"></textarea>
+                    <textarea rows="5" cols="50" name="request_cookies" id="request_cookies" placeholder="Enter cookies (one per line, in name=value format)"></textarea>
                 </div>
-                <input type="submit" id="submitButton" name="formSubmit" class="button-label">
+                <input type="submit" id="debugUrlFormSubmit" name="formSubmit" class="button-label">
             </div>
             
             
@@ -96,8 +90,3 @@ Akamai Request Debugger
     <!-- scripts -->
     <script src="{{url_for('static', filename="main.js")}}"></script>
 
-</body>
-{% endblock %}
-    
-    
-</html>

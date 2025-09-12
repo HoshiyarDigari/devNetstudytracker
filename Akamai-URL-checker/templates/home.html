@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{url_for('static', filename="styles.css")}}">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename="learn-styles.css")}}"> -->
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -10,13 +11,13 @@
     <div class="mainWindow">
         <div class="leftMenu">
 
-            <nav>Debug URL</nav>
-            <nav>Check Origin Certificate</nav>
+            <nav id="debugUrl">Debug URL</nav>
+            <nav id="originCertCheck">Check Origin Certificate</nav>
         </div>
-        <div class="toolWindow">
-            {% block tool %}
+        <div class="toolWindow" id="toolArea">
+            
             <p> Tool window </p>
-            {% endblock %}
+            
         </div>
 
     </div>
