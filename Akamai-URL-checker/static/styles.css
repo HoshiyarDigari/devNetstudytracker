@@ -1,43 +1,85 @@
 .container {
     height: 100vh;
-    background-color: aliceblue;
     display: flex;
     flex-direction: column;
+    background-color: #facfa4;
+    color: black;
+
 }
 .header, .footer {
     width: 100vw;
     text-align: center;
-    background-color: aqua;
-    padding: 10px;
+    font-size: 1.3em;
+ 
 }
 .mainWindow{
     display: flex;
-    background-color: beige;
     /* take up all the vertical space available */
     flex:1 
 }
 
-.leftMenu {
-    background-color: bisque;
+#leftMenu {
+    
     display: flex;
-    width: 20vw;
+    width: 10vw;
     align-items: flex-start;
     flex-direction: column;
     justify-items:center;
     padding: 10px;
+
 }
 nav {
+    width: 10vw;
     padding: 10px;
-    background-color: white;
-    border-radius: 10px;
-    margin: 10px;
 }
+
 nav:hover {
     cursor: pointer;
-    background-color: #8d8d8d;
+    background-color: #f6f1f1;
 }
 .toolWindow {
-    background-color: blanchedalmond;
     flex:1;
     padding: 20px;
+    background-color: #fdd8d8;
+}
+.header-label {
+    display: flex;
+    align-items: center; /* Vertically center the h2 */
+    gap: 10px; /* Space between image and text */
+}
+
+.header-label img {
+    width: 44px;
+    height: 44px;
+}
+
+.header-label h2 {
+    margin: 0;
+    font-size: 1.5em;
+    flex-grow: 1;
+    text-align: center;
+}
+#menuImage {
+    margin:20px;
+}
+#menuImage:hover {
+    cursor: pointer;
+    background-color: white;
+
+}
+.mandatoryFormFields, .optionalFormFields{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+.button-label {
+    width:max-content;
+    background-color: aliceblue;
+    padding: 5px;
+    margin-bottom: 5%;
+    cursor: pointer;
+}
+
+#request_headers, #request_cookies {
+    display: none;
 }

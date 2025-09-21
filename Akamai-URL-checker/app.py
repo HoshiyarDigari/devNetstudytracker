@@ -19,7 +19,7 @@ def homepage():
 @app.route('/debug-url', methods=["POST", "GET"])
 def form_handler():
     if request.method == "GET":
-        return render_template("1.html", output='')
+        return render_template("debugUrl.html", output='')
     akamai_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}
     domain = request.form.get('hostname')
     # if staging is selected, we need to find the staging CNAME

@@ -5,11 +5,15 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    <div class="header">
-    <label class="button-label">Digital Akamai Tools</label>
+    <div class="header" style="display: flex; flex-direction: row;">
+        <label class="header-label">
+            <img src="static/menu.svg" width="44" height="44" id="menuImage">
+            <h2>Digital Akamai Tools</h2>
+        </label>
+       
     </div>
     <div class="mainWindow">
-        <div class="leftMenu">
+        <div id="leftMenu">
 
             <nav id="debugUrl">Debug URL</nav>
             <nav id="originCertCheck">Check Origin Certificate</nav>
@@ -23,7 +27,7 @@
     </div>
     
     <div class="footer">
-        <label class="button-label"> footers </label>
+        <label > footers </label>
     </div>
 </div>
 
