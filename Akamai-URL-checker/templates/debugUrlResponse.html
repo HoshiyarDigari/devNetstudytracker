@@ -1,0 +1,55 @@
+<div classs="outputArea">
+    <div id="summary" style="display: block;">
+        
+    </div>
+    <div  id="rawHeaders" >
+        <!-- We iterate through the output variable to populate different sections -->
+        {% if output !='' %}
+            {%  for category,headers in output.items() %}
+                <!-- the replace function make general_headers look nicer with first words capitalized and _ replaced by space -->
+                <h3>{{category.replace('_',' ').title() }}</h3> 
+                <table class="headerTable">
+                    <thead>
+                        <tr>
+                            <td>Header</td>
+                            <td>Value</td>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        {% for header in headers %}
+                            {% if ":" in header %}
+                                {% set name, value = header.split(":",1) %}
+                                    <tr>
+                                        {% if name.strip()=="Set-Cookie" %}
+                                            {% for c in value.split(", ") %}
+                                                <tr>
+                                                    <td>Set-Cookie</td>
+                                                    <td id="{{c}}">{{c}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% elif name.strip()=="X-Akamai-Session-Info" %}
+                                            
+                                            {% for h in value.strip().split(', ') %}
+                                                <tr>
+                                                    {% set header_name=h.split('; ')[0] %}
+                                                    <td >{{header_name}}</td>
+                                                    <td id="{{header_name}}">{{ h.split('; ')[1] }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                            <td >{{name.strip()}}</td>
+                                            <td id="{{name.strip()}}">{{value.strip()}}</td>
+                                        {% endif %}
+                                    </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+    
+    
+</div>

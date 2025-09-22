@@ -80,6 +80,15 @@ nav:hover {
     cursor: pointer;
 }
 
+.button-label:hover {
+    background-color:burlywood
+}
 #request_headers, #request_cookies {
     display: none;
+}
+
+#debugUrlFormSubmit {
+    width: 100%;
+    border-radius: 10px;
+    border-color: black;
 }
