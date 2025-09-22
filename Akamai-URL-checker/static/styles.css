@@ -76,7 +76,7 @@ nav:hover {
     width:max-content;
     background-color: aliceblue;
     padding: 5px;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
     cursor: pointer;
 }
 
@@ -85,10 +85,24 @@ nav:hover {
 }
 #request_headers, #request_cookies {
     display: none;
+    margin-bottom: 1%;
 }
 
 #debugUrlFormSubmit {
     width: 100%;
     border-radius: 10px;
     border-color: black;
+}
+
+#summary {
+    font-size: 1.3em;
+    background-color: rgb(122, 165, 182);
+    color: black;
+    padding: 10px;
+}
+
+table,th, td  {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
 }
