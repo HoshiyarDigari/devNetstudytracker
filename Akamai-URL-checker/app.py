@@ -14,12 +14,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return render_template('base.html')
+    return render_template('home.html')
 
-@app.route('/akamai-curl', methods=["POST", "GET"])
+@app.route('/debug-url', methods=["POST", "GET"])
 def form_handler():
     if request.method == "GET":
-        return render_template("requestDebugger.html", output='')
+        return render_template("debugUrlForm.html", output='')
     akamai_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}
     domain = request.form.get('hostname')
     # if staging is selected, we need to find the staging CNAME
@@ -64,7 +64,7 @@ def form_handler():
     network = request.form.get('network')
 
     result= get_response(domain, path, akamai_headers, request_cookies,network)
-    #output = json.loads(result.get_data(as_text=True))
+
     return result
 
 # this ensures that this code is running directly and not as a imported module
