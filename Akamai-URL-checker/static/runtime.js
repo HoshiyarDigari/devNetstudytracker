@@ -58,10 +58,27 @@ function parseRawHeaders(){
         message+=`The origin server is ${origin.textContent.trim()}.<br>`
     }
     // select all elements whose id begins with ALB string, which should be just one, we then format it to just get teh alb origin name, because we are looking at a cookie value
-    const alb_origin = document.querySelectorAll('[id^="ALB"]')[0].textContent.split(';',1);
+    let alb_origin =''
+    try {
+        alb_origin = document.querySelectorAll('[id^="ALB"]')[0].textContent.split(';',1);
+    }
+    catch (error) {
+        alb_origin='';
+    }
+        
     if (alb_origin) {
         message+=`The request was assigned an ALB origin: ${alb_origin}`;
     }
+    else {
+        // check if there is a ALB cookie that begins with akaalb
+        alb_origin = document.querySelectorAll("[id^='akaalb']")[0].innerHTML
+        if (alb_origin) [
+            message+=`The request was assigned the alb cookie ${alb_origin}`
+        ]
+
+
+    }
+    
     document.getElementById('summary').innerHTML = `<h3>Summary</h3><p>${message}</p>`;
 }
 
