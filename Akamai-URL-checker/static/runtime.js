@@ -115,4 +115,20 @@ window.addEventListener("DOMContentLoaded", ()=>{
         })
     });
     
+    // function to fetch the origin Cert checker Input form
+    document.getElementById('originCertCheck').addEventListener('click', ()=>{
+        fetch('/origin-cert-checker')
+        .then (response => {
+            if (!response.ok) {
+                throw new error (`HTTP ERROR; ${response.status}`)
+            }
+            return response.text()
+        })
+        .then (html => {
+            document.getElementById('toolArea').innerHTML=html
+        })
+        .catch ( error =>{
+            document.getElementById('toolArea').innerHTML = `<h2>Fetch error ${error}</h2`
+        })
+    })
 })

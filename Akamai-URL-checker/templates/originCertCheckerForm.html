@@ -1,0 +1,24 @@
+
+<div id="inputFormArea">
+    <h3>Origin Certificate Checker</h3>
+    <form method="POST" action="/origin-cert-checker" id="inputForm">
+        <div class="mandatoryFormFields" >
+            <label for="hostname">Origin Hostname</label>
+            <input type="text" id="hostname" name="hostname" pattern="\S*[.]\S*" title="Enter a valid origin hostname" required>
+            <label for="forwardHostHeader">Forward Host Header</label>
+            <input type="text" id="forwardHostHeader" name="forwardHostHeader" pattern="\S*[.]\S*" title="Enter a Host header" required>
+            
+        </div>
+        <!-- <div class="optionalFormFields">
+            <label for="request_headers" class="button-label" id="addReqHeadersButton">Add Request Headers</label>
+            <textarea rows="5" cols="50" type="text" name="request_headers" placeholder="Enter Headers ( one per line , in name:value format)" id="request_headers" ></textarea>
+            <label for="request_cookies" class="button-label" id="addReqCookiesButton">Add Request Cookies</label>
+            <textarea rows="5" cols="50" name="request_cookies" id="request_cookies" placeholder="Enter cookies (one per line, in name=value format)"></textarea>
+        </div> -->
+        <input type="submit" id="originCertCheckerSubmit" name="originCertCheckerSubmit" class="button-label" >
+        
+    </form>
+</div>
+
+
+
