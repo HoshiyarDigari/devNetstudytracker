@@ -82,6 +82,49 @@ function parseRawHeaders(){
     document.getElementById('summary').innerHTML = `<h3>Summary</h3><p>${message}</p>`;
 }
 
+function fetchCertCheckForm() {
+    document.getElementById('originCertCheck').addEventListener('click', ()=>{
+        fetch('/origin-cert-checker')
+        .then (response => {
+            if (!response.ok) {
+                throw new error (`HTTP ERROR; ${response.status}`)
+            }
+            return response.text()
+        })
+        .then (html => {
+            document.getElementById('toolArea').innerHTML=html;
+            submitCertCheckForm()
+        })
+        .catch ( error =>{
+            document.getElementById('toolArea').innerHTML = `<h2>Fetch error ${error}</h2`
+        })
+    })
+}
+
+function submitCertCheckForm(){
+    // check if submit button is loaded
+    submitAvailable = document.getElementById('originCertCheckerSubmit')
+    if (submitAvailable) {
+        document.getElementById('originCertCheckerSubmit').addEventListener('click', (event) => {
+            event.preventDefault();
+            const form = document.getElementById('inputForm');
+            fetch('/origin-cert-checker', {
+                method:'POST',
+                body: new FormData(form)
+            })
+            .then (response => {
+                return response.text()
+             })
+            .then (html => {
+                document.getElementById('toolArea').innerHTML = html;
+            })
+            .catch (error => {
+                document.getElementById('toolArea').innerHTML = `<h2>HTTP ERROR: ${error}</h2>`;
+            })
+    })
+
+    }
+}
 // We only invoke the JS functions once the page is fully loaded
 window.addEventListener("DOMContentLoaded", ()=>{
 
@@ -133,34 +176,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     });
     
     // function to fetch the origin Cert checker Input form
-    document.getElementById('originCertCheck').addEventListener('click', ()=>{
-        fetch('/origin-cert-checker')
-        .then (response => {
-            if (!response.ok) {
-                throw new error (`HTTP ERROR; ${response.status}`)
-            }
-            return response.text()
-        })
-        .then (html => {
-            document.getElementById('toolArea').innerHTML=html
-        })
-        .catch ( error =>{
-            document.getElementById('toolArea').innerHTML = `<h2>Fetch error ${error}</h2`
-        })
-    })
-    // function to submit the origin cert checker request
-    document.getElementById('originCertCheckerSubmit').addEventListener('click', (event)=>{
-        event.preventDefault();
-        const form = document.getElementById('inputForm');
-        fetch('/origin-cert-checker', {
-            method:'POST',
-            body: new FormData(form)
-        })
-        .then (response => {
-            document.getElementById('toolArea').innerHTML=response.text();
-        })
-        .catch (error => {
-            document.getElementById('toolArea').innerHTML = `<h2>HTTP ERROR: ${error}</h2>`;
-        })
-    })
+    fetchCertCheckForm()
+
+    
 })

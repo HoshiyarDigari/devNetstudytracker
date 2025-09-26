@@ -1,4 +1,5 @@
 from OpenSSL import SSL, crypto
+from flask import render_template
 import socket
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
@@ -58,4 +59,4 @@ def get_origin_cert(origin, host):
         parsed = parse_pem_cert(pem)
         cert_details[i] = parsed
     cert_details[10] = certs_pem
-    return cert_details
+    return render_template("originCertCheckerResponse.html", output=cert_details)
