@@ -148,4 +148,19 @@ window.addEventListener("DOMContentLoaded", ()=>{
             document.getElementById('toolArea').innerHTML = `<h2>Fetch error ${error}</h2`
         })
     })
+    // function to submit the origin cert checker request
+    document.getElementById('originCertCheckerSubmit').addEventListener('click', (event)=>{
+        event.preventDefault();
+        const form = document.getElementById('inputForm');
+        fetch('/origin-cert-checker', {
+            method:'POST',
+            body: new FormData(form)
+        })
+        .then (response => {
+            document.getElementById('toolArea').innerHTML=response.text();
+        })
+        .catch (error => {
+            document.getElementById('toolArea').innerHTML = `<h2>HTTP ERROR: ${error}</h2>`;
+        })
+    })
 })

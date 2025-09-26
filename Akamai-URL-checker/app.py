@@ -3,6 +3,7 @@ from getResponse import get_response
 import json
 import dns.resolver
 import re
+from getOriginCerts import get_origin_cert
 
 
 
@@ -20,8 +21,9 @@ def homepage():
 def origin_cert_check_handler():
     if request.method == 'GET':
         return render_template('originCertCheckerForm.html')
-    else:
-        return '<h2>Under Construction </h2>'
+    origin = request.form.get('hostname')
+    host_header = request.form.get('forwardHostHeader')
+    return get_origin_cert(origin, host_header)
     
 
 @app.route('/debug-url', methods=["POST", "GET"])
