@@ -3,6 +3,8 @@ from flask import render_template
 import socket
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
+import ssl
+import socket
 
 def parse_pem_cert(pem_cert):
     """
@@ -26,6 +28,19 @@ def parse_pem_cert(pem_cert):
             "san": san_list
         }
 
+
+def check_cert_valid(origin, host):
+    try:
+        context = ssl.create_default_context()
+        with socket.create_connection((origin, 443)) as sock:
+            with context.wrap_socket(sock, server_hostname=host) as ssock:
+                cert = ssock.getpeercert()
+                # If we got here, cert is valid and hostname matches
+                return f'Cert chain OK and {host} matches'
+    except ssl.SSLCertVerificationError as e:
+        return f'{e}'
+    except Exception as e:
+        return f'Connection or handshake failed: {e}'
 
 
 def get_origin_cert(origin, host):
@@ -55,8 +70,12 @@ def get_origin_cert(origin, host):
     cert_details = dict()
    
     for i, pem in enumerate(certs_pem):
-        #cert_type = pem._cert_type()
         parsed = parse_pem_cert(pem)
         cert_details[i] = parsed
-    cert_details[10] = certs_pem
+    # we use key 10 to indicate field where the raw pem cert is listed, its needed to avoid mixed type of keys. earlier wer are using i an integer for the key
+    cert_details[10] = { index:value for index, value in enumerate(certs_pem)}
+    # add result of the cert chain validity
+    cert_details[20] = check_cert_valid(origin, host)
+    
+
     return render_template("originCertCheckerResponse.html", output=cert_details)

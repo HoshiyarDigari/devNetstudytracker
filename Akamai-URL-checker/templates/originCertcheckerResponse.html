@@ -1,13 +1,13 @@
 <div class="outputArea">
     <div id="summary" style="display: block;">
-        <p>Add summary here</p>
+        <h3>{{output[20]}}</h3>
     </div>
     <div id="rawHeaders">
         {% if output !='' %}
             {%  for key,cert_details in output.items() %}
-                {% if  key == 0 %}
+                {% if  key != 10 and key != 20 %}
                     <table>
-                        <h2 class="headings">Leaf Certificate</h2>
+                        <h2 class="headings">Certificate at level {{key}}</h2>
                         {% for attribute,value in cert_details.items() %}
                             <tr>
                                 <td>{{attribute}}</td>
@@ -15,30 +15,18 @@
                             </tr>
                         {% endfor %}
                     </table>
-                    
-
-                {% endif %}
-                {% if  key == 1 %}
-                    <table>
-                        <h2 class="headings">Intermediate Certificate</h2>
-                        {% for attribute,value in cert_details.items() %}
-                            <tr>
-                                <td>{{attribute}}</td>
-                                <td>{{value}}</td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                    
-
                 {% endif %}
                 {% if  key == 10 %}
                     <table>
-                        <h2> Raw certificates</h2>
-                        <td>{{cert_details}}</td>
+                        <h2 class="headings">PEM Certificate at each level</h2>
+                        {% for attribute,value in cert_details.items() %}
+                            <tr>
+                                <td>{{attribute}}</td>
+                                <td>{{value}}</td>
+                            </tr>
+                        {% endfor %}
                     </table>
-                    
-
-                {% endif %}
+                {% endif %} 
             {% endfor %}
         {% endif %}
     </div>  
