@@ -3,6 +3,7 @@ from getResponse import get_response
 import json
 import dns.resolver
 import re
+from getOriginCerts import get_origin_cert
 
 
 
@@ -16,8 +17,17 @@ app = Flask(__name__)
 def homepage():
     return render_template('home.html')
 
+@app.route('/origin-cert-checker', methods=['POST', 'GET'])
+def origin_cert_check_handler():
+    if request.method == 'GET':
+        return render_template('originCertCheckerForm.html')
+    origin = request.form.get('hostname')
+    host_header = request.form.get('forwardHostHeader')
+    return get_origin_cert(origin, host_header)
+    
+
 @app.route('/debug-url', methods=["POST", "GET"])
-def form_handler():
+def debug_url_handler():
     if request.method == "GET":
         return render_template("debugUrlForm.html", output='')
     akamai_headers = {"pragma":"akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-true-cache-key,akamai-x-get-extracted-values", "x-akamai-debug":"RogersFidoHeaders"}

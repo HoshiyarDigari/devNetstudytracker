@@ -1,0 +1,33 @@
+<div class="outputArea">
+    <div id="summary" style="display: block;">
+        <h3>{{output[20]}}</h3>
+    </div>
+    <div id="rawHeaders">
+        {% if output !='' %}
+            {%  for key,cert_details in output.items() %}
+                {% if  key != 10 and key != 20 %}
+                    <table>
+                        <h2 class="headings">Certificate at level {{key}}</h2>
+                        {% for attribute,value in cert_details.items() %}
+                            <tr>
+                                <td>{{attribute}}</td>
+                                <td>{{value}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+                {% if  key == 10 %}
+                    <table>
+                        <h2 class="headings">PEM Certificate at each level</h2>
+                        {% for attribute,value in cert_details.items() %}
+                            <tr>
+                                <td>{{attribute}}</td>
+                                <td>{{value}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %} 
+            {% endfor %}
+        {% endif %}
+    </div>  
+</div>
