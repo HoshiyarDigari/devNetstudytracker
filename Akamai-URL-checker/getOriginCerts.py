@@ -36,7 +36,7 @@ def check_cert_valid(origin, host):
             with context.wrap_socket(sock, server_hostname=host) as ssock:
                 cert = ssock.getpeercert()
                 # If we got here, cert is valid and hostname matches
-                return f'Cert chain OK and {host} matches'
+                return f'Cert chain OK and {host} validatess'
     except ssl.SSLCertVerificationError as e:
         return f'{e}'
     except Exception as e:
