@@ -125,6 +125,21 @@ function submitCertCheckForm(){
 
     }
 }
+
+function fetchGeoLocationForm(){
+    document.getElementById('geo-location-finder').addEventListener('click', ()=> {
+        fetch('/geo-location')
+        .then (response => {
+            return response.text();
+        })
+        .then (html => {
+            document.getElementById('toolArea').innerHTML = html;
+        })
+        .catch (error => {
+            document.getElementById('toolArea').innerHTML = `<pre>error ${error} occured </pre>`
+        })
+    })
+}
 // We only invoke the JS functions once the page is fully loaded
 window.addEventListener("DOMContentLoaded", ()=>{
 
@@ -177,6 +192,8 @@ window.addEventListener("DOMContentLoaded", ()=>{
     
     // function to fetch the origin Cert checker Input form
     fetchCertCheckForm()
+    // function to fetch the geo location form
+    fetchGeoLocationForm()
 
     
 })

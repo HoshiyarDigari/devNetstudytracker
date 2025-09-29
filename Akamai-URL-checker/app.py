@@ -17,6 +17,16 @@ app = Flask(__name__)
 def homepage():
     return render_template('home.html')
 
+
+# geo location handler
+
+@app.route('/geo-location', methods=['POST', 'GET'])
+def geo_location_handler():
+    if request.method == 'GET':
+        return render_template("GeoLocationForm.html")
+    return '<h2>under construction</h2>'
+
+# origin cert checker handler
 @app.route('/origin-cert-checker', methods=['POST', 'GET'])
 def origin_cert_check_handler():
     if request.method == 'GET':
@@ -26,6 +36,7 @@ def origin_cert_check_handler():
     return get_origin_cert(origin, host_header)
     
 
+# debug url handler
 @app.route('/debug-url', methods=["POST", "GET"])
 def debug_url_handler():
     if request.method == "GET":
