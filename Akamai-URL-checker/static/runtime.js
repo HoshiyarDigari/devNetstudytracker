@@ -22,7 +22,40 @@ function changeVisibility(clickElementId, targetElementId) {
     })
 }
 
+function submitGeoLocationForm() {
+    // ensure that only one of the input forms is filled in, this grays out the host input if ip address input is filled in and vice versa
 
+    const hostInput = document.getElementById('geoByHostInput')
+    const ipInput = document.getElementById('geoByIPInput')
+
+    document.getElementById('geoLocationSubmit').addEventListener('click', (event)=>{
+        event.preventDefault();
+        form = document.getElementById('geoLocationForm')
+        if (ipInput.value && hostInput.value) {
+            alert("You can only check with either the Ip or the Hostname")
+            ipInput.value='';
+            hostInput.value = '';
+        }
+        else {
+            fetch('/geo-location', {
+                method:'POST',
+                body: new FormData(form)
+
+            })
+            .then (response => {
+                return response.text()
+            })
+            .then (html => {
+                document.getElementById('toolArea').innerHTML= html
+            })
+            .catch (error => {
+                document.getElementById('toolArea').innerHTML=`<h2>error occurred ${error}</h2>`
+            })
+        }
+    })
+
+    
+}
 function parseRawHeaders(){
     // capture status code
     const statusCode = document.getElementById("status_code").textContent;
@@ -107,7 +140,7 @@ function submitCertCheckForm(){
     if (submitAvailable) {
         document.getElementById('originCertCheckerSubmit').addEventListener('click', (event) => {
             event.preventDefault();
-            const form = document.getElementById('inputForm');
+            const form = document.getElementById('certCheckForm');
             fetch('/origin-cert-checker', {
                 method:'POST',
                 body: new FormData(form)
@@ -134,11 +167,15 @@ function fetchGeoLocationForm(){
         })
         .then (html => {
             document.getElementById('toolArea').innerHTML = html;
+            changeVisibility("geoByHost", "geoByHostInput");
+            changeVisibility("geoByIP", "geoByIPInput");
+            submitGeoLocationForm();
         })
         .catch (error => {
             document.getElementById('toolArea').innerHTML = `<pre>error ${error} occured </pre>`
         })
     })
+    
 }
 // We only invoke the JS functions once the page is fully loaded
 window.addEventListener("DOMContentLoaded", ()=>{
@@ -166,7 +203,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
                 // stop default action of submit to POST data
                 event.preventDefault();
                 // capture the form values
-                const form = document.getElementById('inputForm');
+                const form = document.getElementById('debugUrlForm');
 
                 
                 //POST data from the debug url form

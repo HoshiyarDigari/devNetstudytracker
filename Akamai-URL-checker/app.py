@@ -4,6 +4,7 @@ import json
 import dns.resolver
 import re
 from getOriginCerts import get_origin_cert
+from getGeoLocation import get_geo_location
 
 
 
@@ -24,7 +25,7 @@ def homepage():
 def geo_location_handler():
     if request.method == 'GET':
         return render_template("GeoLocationForm.html")
-    return '<h2>under construction</h2>'
+    return get_geo_location()
 
 # origin cert checker handler
 @app.route('/origin-cert-checker', methods=['POST', 'GET'])

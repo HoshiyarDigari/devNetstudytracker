@@ -88,12 +88,28 @@ nav:hover {
     background-color: #44e28e;
 
 }
+.submitButton, .button-label {
+    
+    background-color:#3A86FF; /* Primary blue */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: fit-content;
+    margin: 5px;
 
-.button-label:hover {
-    background-color:burlywood;
-    color: black;
 }
-#request_headers, #request_cookies {
+.submitButton:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: translateY(-2px);
+
+}
+#request_headers, #request_cookies, #geoByHostInput {
     display: none;
     margin-bottom: 1%;
 }
@@ -119,7 +135,21 @@ table,th, td  {
     padding: 5px;
 
 }
-input, textarea{
-    background-color: #afadad;
-    color:black
+
+
+input {
+  background-color: whitesmoke;
+  border: 1px solid #555;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #111111;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+input:focus {
+  border-color: #3A86FF;
+  box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.3);
+}
+
