@@ -25,7 +25,8 @@ def homepage():
 def geo_location_handler():
     if request.method == 'GET':
         return render_template("GeoLocationForm.html")
-    return get_geo_location()
+    ip=request.form.get('IP')
+    return get_geo_location(ip)
 
 # origin cert checker handler
 @app.route('/origin-cert-checker', methods=['POST', 'GET'])

@@ -4,9 +4,9 @@
     <form method="POST" action="/geo-location" id="geoLocationForm">
         <div class="mandatoryFormFields" >
             <label class="button-label" id="geoByIP">IP Address Lookup</label>
-            <input type="text" id="geoByIPInput" pattern="^(?:(?:\d{1,3})\.){3}\d{1,3}$" title="Enter a valid IP Address">
+            <input type="text" id="geoByIPInput" name="IP" pattern="^(?:(?:\d{1,3})\.){3}\d{1,3}$" title="Enter a valid IP Address">
             <label class="button-label" id="geoByHost">Hostname Lookup</label>
-            <input type="text" id="geoByHostInput" pattern="\S*[.]\S*" title="Enter a valid Hostname" >
+            <input type="text" id="geoByHostInput" name="hostname" pattern="\S*[.]\S*" title="Enter a valid Hostname" >
         </div>
             
         <input type="submit" id="geoLocationSubmit" name="geoLocationSubmit" class="submitButton" >

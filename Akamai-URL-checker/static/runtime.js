@@ -30,7 +30,8 @@ function submitGeoLocationForm() {
 
     document.getElementById('geoLocationSubmit').addEventListener('click', (event)=>{
         event.preventDefault();
-        form = document.getElementById('geoLocationForm')
+        const form = document.getElementById('geoLocationForm')
+        const payload = new FormData(form)
         if (ipInput.value && hostInput.value) {
             alert("You can only check with either the Ip or the Hostname")
             ipInput.value='';
@@ -39,7 +40,7 @@ function submitGeoLocationForm() {
         else {
             fetch('/geo-location', {
                 method:'POST',
-                body: new FormData(form)
+                body: payload
 
             })
             .then (response => {
@@ -84,8 +85,10 @@ function parseRawHeaders(){
     let cache_hit = document.getElementById("X-Cache").textContent.trim();
     // cache hit will be true if "HIT" is found in the string else it will be false
     cache_hit = cache_hit.toLowerCase().includes("hit");
-    message+= cache_hit? "The response was served from cache.<br><br>": "The response was fetched from origin.<br>";
+    message+= cache_hit? "The response was served from cache.<br><br>": "The response was not from Akamai cache and came from the origin.<br>";
     // check if there is a server header
+    const cache_key = document.getElementById('X-Cache-Key').innerText.trim()
+    message+=`The cache key is ${cache_key}<br>`
     const origin = document.getElementById("Server")
     if (origin) {
         message+=`The origin server is ${origin.textContent.trim()}.<br>`
@@ -102,15 +105,15 @@ function parseRawHeaders(){
     if (alb_origin) {
         message+=`The request was assigned an ALB origin: ${alb_origin}`;
     }
-    else {
-        // check if there is a ALB cookie that begins with akaalb
-        alb_origin = document.querySelectorAll("[id^='akaalb']")[0].innerHTML
-        if (alb_origin) [
-            message+=`The request was assigned the alb cookie ${alb_origin}`
-        ]
+    // else {
+    //     // check if there is a ALB cookie that begins with akaalb
+    //     alb_origin = document.querySelectorAll("[id^='akaalb']")[0].innerHTML
+    //     if (alb_origin) [
+    //         message+=`The request was assigned the alb cookie ${alb_origin}`
+    //     ]
 
 
-    }
+    // }
     
     document.getElementById('summary').innerHTML = `<h3>Summary</h3><p>${message}</p>`;
 }
