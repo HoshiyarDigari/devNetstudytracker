@@ -1,0 +1,23 @@
+<div class="outputArea">
+    <div id="summary" style="display: block;">
+        {% if output.result.isEdgeIP %}
+            <h3>{{output.request.ipAddress}} is an Akamai Edge IP</h3>
+        {% else %}
+            <h3>{{output.request.ipAddress}} is NOT an Akamai IP</h3>
+        {% endif %}
+    </div>
+    <div id="rawHeaders">
+        <table>
+            <tbody>
+                {% for item, value in output.result.geoLocation.items() %}
+                <tr>
+                    <td>{{item}}</td>
+                    <td>{{value}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+        
+    </div>  
+</div>
